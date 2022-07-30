@@ -1,1 +1,26 @@
 <p>home works!</p>
+
+  <p>
+    <ngb-alert [dismissible]="false">
+      <strong>Warning!</strong> Better check yourself, you're not looking too goo   d.
+    </ngb-alert>
+  </p>
+
+  <button class="btn btn-primary">hello</button>
+
+  <button type="button" class="btn btn-outline-secondary me-2" placement="left"
+        ngbPopover="Super" popoverTitle="cool">
+  Popover on top
+    </button>
+
+  <div style="width: 900px; height: 500px;">
+  <ngb-carousel *ngIf="images">
+    <ng-template *ngFor="let image of images" ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="image" alt="Random first slide">
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
+
+<ngb-pagination [collectionSize]="70" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>

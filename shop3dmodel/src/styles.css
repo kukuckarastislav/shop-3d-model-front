@@ -5,3 +5,24 @@ body{
     color: #333;
     -webkit-font-smoothing: antialiased;
 }
+
+/*
+.btn-primary{
+    background-color: red;
+}
+
+.btn-primary:hover{
+    background-color: green ;
+}
+
+.btn-primary:focus{
+    background-color: yellow;
+}
+*/
+
+/*
+.page-link{
+    color: green;
+    background-color: greenyellow;
+}
+*/
