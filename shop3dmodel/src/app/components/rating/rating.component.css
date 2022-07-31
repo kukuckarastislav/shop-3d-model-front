@@ -1,0 +1,15 @@
+.star {
+    font-size: 2rem;
+    color: rgb(240, 168, 168);
+}
+
+.filled {
+    color: rgb(240, 0, 0);
+}
+
+.rate-text{
+    color: rgb(240, 0, 0);
+    font-size: 2rem;
+    margin-left: 1rem;
+    
+}
