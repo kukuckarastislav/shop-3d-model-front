@@ -4,6 +4,11 @@ body{
     font-size: 14px;
     color: #333;
     -webkit-font-smoothing: antialiased;
+    background-color: #F5F6F7;
+}
+
+.container{
+    width: 2000px;
 }
 
 /*
