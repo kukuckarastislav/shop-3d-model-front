@@ -1,9 +1,8 @@
 <div class="s3m-avatar-container" 
     [style.width.px]="size" 
     [style.height.px]="size" 
-    ngbPopover="{{name}}"
-    triggers="mouseenter:mouseleave"
-    placement="left"
+    ngbTooltip="{{name}}"
+    placement="bottom"
     [style.background-color]="getColor()">
     <div [style.font-size.px]="size/2.5" 
         [style.color]="getColorFont()" 
