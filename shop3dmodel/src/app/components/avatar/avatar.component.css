@@ -1,0 +1,12 @@
+.s3m-avatar-container{
+    background-color: gray;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s3m-avatar-text{
+    color: white;
+    font-weight: 500;
+}

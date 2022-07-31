@@ -7,13 +7,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RatingComponent } from './components/rating/rating.component';
 import { HomeNavbarComponent } from './components/home-navbar/home-navbar.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RatingComponent,
-    HomeNavbarComponent
+    HomeNavbarComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,
