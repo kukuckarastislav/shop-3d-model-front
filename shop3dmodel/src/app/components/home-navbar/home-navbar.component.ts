@@ -12,4 +12,6 @@ export class HomeNavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userExist = true;
+
 }
