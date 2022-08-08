@@ -9,7 +9,8 @@ import { RatingComponent } from './components/rating/rating.component';
 import { HomeNavbarComponent } from './components/home-navbar/home-navbar.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { CardS3mComponent } from './components/card-s3m/card-s3m.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {MatIconModule} from '@angular/material/icon'
     HomeComponent,
     RatingComponent,
     HomeNavbarComponent,
-    AvatarComponent
+    AvatarComponent,
+    CardS3mComponent
   ],
   imports: [
     BrowserModule,

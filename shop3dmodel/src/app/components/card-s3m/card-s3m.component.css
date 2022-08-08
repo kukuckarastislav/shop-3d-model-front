@@ -1,0 +1,27 @@
+.star {
+    font-size: 2rem;
+    color: rgb(240, 0, 0);
+}
+
+.rate-text{
+    color: rgb(240, 0, 0);
+    font-size: 1.3rem;
+    margin-left: 1rem; 
+}
+
+.s3m-card-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.s3m-card-fotter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.s3m-card-icon{
+    width: 20px;
+    height: 20px;
+}
