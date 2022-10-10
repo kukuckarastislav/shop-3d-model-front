@@ -1,22 +1,25 @@
-<div class="card" style="">
-    <img src="../../../assets/egt.jpg" class="card-img-top" alt="...">
+<div class="card">
+    <img [src]=getImage() class="card-img-top" alt="...">
     <div class="card-body">
-      <div class="s3m-card-title">
-        <h5 class="card-title">Audi EGT 2022</h5>
-        <div>
+      <div class="row">
+        <h5 class="col-9 card-title">{{product.name}}</h5>
+        <div class="col-3">
             <span class="star">&#9733;</span>
-            <span class="rate-text" style="margin-left: -1px;">4.5</span>
+            <span class="rate-text" style="margin-left: -1px;">{{product.averageGrade}}</span>
         </div>
       </div>
-      <p class="card-text">max, obj, fbx, 3ds, c4d and more</p>
+      <ng-container *ngFor="let tag of product.tags">
+        <span class="badge badge-pill badge-light">{{tag}}</span>
+      </ng-container>
+      <br> <br>
       <div class="d-flex">
-        <app-avatar [size]="20" [name]="'Rasti'"></app-avatar>
-        <p class="card-text" style="margin-left: 8px;">Raky FX</p>  
+        <app-avatar [size]="20" [name]="product.username"></app-avatar>
+        <p class="card-text" style="margin-left: 8px;">{{product.username}}</p>  
       </div>
       <hr>
       <div class="s3m-card-fotter">
         <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon">
-        <h5 class="card-title" style="margin: 0px;">$149.99</h5>
+        <h5 class="card-title" style="margin: 0px;">${{product.price}}</h5>
       </div>
     </div>
 </div>

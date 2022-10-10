@@ -11,6 +11,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { CardS3mComponent } from './components/card-s3m/card-s3m.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CardS3mComponent } from './components/card-s3m/card-s3m.component'
     AppRoutingModule,
     NgbModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
