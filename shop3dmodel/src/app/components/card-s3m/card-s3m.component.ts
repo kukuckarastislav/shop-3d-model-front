@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ProductPreview } from 'src/app/models/ProductPreview';
 import { environment } from 'src/environments/environment';
 
+
 @Component({
   selector: 'app-card-s3m',
   templateUrl: './card-s3m.component.html',
@@ -18,6 +19,10 @@ export class CardS3mComponent implements OnInit {
 
   getImage() {
     return environment.backend_url + this.product.imageUrl;
+  }
+
+  showDetail() {
+    window.location.href = '/product/' + this.product.uuid;
   }
 
 }

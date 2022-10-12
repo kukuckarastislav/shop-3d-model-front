@@ -14,4 +14,8 @@ export class ProductService {
   GetProductPreview() {
     return this._http.get<any>(this.url+'api/product');
   }
+
+  GetProduct(id: string) {
+    return this._http.get<any>(this.url+'api/product/'+id);
+  }
 }

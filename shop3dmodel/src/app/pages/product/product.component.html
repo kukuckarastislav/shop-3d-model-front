@@ -1,0 +1,277 @@
+<div class="s3m-container">
+    <br>
+    <div class="row">
+        <div class="col-9">
+            
+            <ngb-carousel [interval]="20000">
+                <ng-template ngbSlide *ngFor="let img of product.images; let i = index">
+                  <div class="picsum-img-wrapper" style="display: flex; justify-content: center;">
+                    <img [src]="getImageURL(img)" class="prodcut-img" alt="Random first slide">
+                  </div>
+                  <!-- 
+                  <div class="carousel-caption">
+                    <h3>{{i}}</h3>
+                  </div>
+                  -->
+                </ng-template>
+            </ngb-carousel>
+            
+            <!-- Name -->
+            <div class="row mt-3">
+                <div class="col">
+                    <h2 class="">{{product.name}}</h2>
+                </div>
+            </div>
+            
+            <!-- Views, Likes, Grade -->
+            <div class="row mt-4">
+                <div class="col-3" >
+                    <app-rating [readonly]="true" [currentRate]="product.averageGrade"></app-rating>
+                </div>
+                <div class="col-2 mt-3">
+                    <img src="../../../assets/icons/heart.svg" class="s3m-card-icon" placement="top" ngbTooltip="Like">
+                    <span placement="top" ngbTooltip="Number of likes">{{product.numberOfLikes}}</span>
+                </div>
+                <div class="col-2 mt-3">
+                    <img src="../../../assets/icons/eye.svg" class="s3m-card-icon">
+                    <span placement="top" ngbTooltip="Number of views">{{product.numberOfViews}}</span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                       <div class="col">
+                            <h4 class="card-title">Description</h4>
+                       </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">{{product.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <div class="btn-group btn-group-toggle">
+                                <button class="btn btn-outline-primary" (click)="showComments()">Comments</button>
+                                <button class="btn btn-outline-primary" (click)="showReviews()">Reviews</button>
+                            </div>
+                        </div>
+                    </div> <br>
+                    <div class="row" *ngIf="commentsVisible">
+                        <div class="col">
+                            <h4 class="card-title">Comments</h4>
+                            <hr>
+
+                            <div *ngFor="let comment of product.comments">
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <app-avatar [size]="30" [name]="comment.userAccount.name"></app-avatar>
+                                        <p class="card-text ml-2 mt-1" style="font-size: larg;"><b>{{comment.userAccount.name}}</b></p>
+                                        <p class="card-text ml-2 mt-1" style="font-weight: lighter;"> - {{comment.date | date:'d.M.yyyy'}}</p>
+                                    </div>
+                                </div>
+                                <div class="card ml-5">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-text">{{comment.comment}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col mt-2 ml-5">
+                                                <p class="card-text"><b>{{product.creator.name}}:</b> {{comment.creatorReply}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <br> <br>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="!commentsVisible">
+                        <div class="col">
+                            <h4 class="card-title">Reviews</h4>
+                            <hr>
+
+                            <div *ngFor="let review of product.reviews">
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <app-avatar [size]="30" [name]="review.userAccount.name"></app-avatar>
+                                        <p class="card-text ml-2 mt-1" style="font-size: larg;"><b>{{review.userAccount.name}}</b></p>
+                                        <p class="card-text ml-2 mt-1" style="font-weight: lighter;"> - {{review.date | date:'d.M.yyyy'}}</p>
+                                    </div>
+                                    <div class="col"></div>
+                                    <div class="col-4 text-right">
+                                        <app-rating class="ml-5" [readonly]="true" [currentRate]="review.grade"></app-rating>
+                                    </div>
+                                </div>
+                                <div class="card ml-5">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-text">{{review.comment}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <br> <br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+        <div class="col-3">
+            
+            <!-- Buy Add to cart -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h2 class="card-title">${{product.price}}</h2>
+                        </div>
+                        <div class="col text-right">
+                            <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon" placement="top" ngbTooltip="Save">
+                            <button class="btn btn-outline-success">Offer price</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-lg" style="width: 100%;">Add to cart</button>
+                </div>
+            </div> <br>
+
+            <!-- Seller -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <!-- <img src="../../../assets/rastislav.jpg" class="s3m-profile-img" alt=""> -->
+                            <app-avatar [size]="80" [name]="product.creator.name"></app-avatar>
+                        </div>
+                        <div class="col text-left">
+                            <h4 class="card-title">{{product.creator.name}}</h4>
+                            <p class="card-text">{{product.creator.firstname}} {{product.creator.lastname}}</p>
+                            <button class="btn btn-outline-primary" style="width: 100%;">Message me</button>
+                        </div>
+                    </div> <hr>
+                    <div class="row" *ngIf="product.creator.responseCountPercentage > 0">
+                        <div class="col text-center">
+                            <p class="card-text"> <b>Response:</b> {{product.creator.responseCountPercentage}}% in {{minutesToTime(product.creator.averageResponseTimeMinutes)}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <br>
+
+            <!-- product details -->
+            <div class="card">
+                <div class="card-body" style="font-weight: bold;">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h4 class="card-title">Details</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Animated</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{boolToYesNo(product.details.animated)}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Rigged</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{boolToYesNo(product.details.rigged)}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Textured</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{boolToYesNo(product.details.textured)}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">PBR</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{boolToYesNo(product.details.pbr)}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Materials</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{product.details.numberOfMaterials}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Vertices</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{product.details.numberOfVertices}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Polygons</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{product.details.numberOfPolygons}}</p>
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Files</p>
+                        </div>
+                        <div class="col text-right">
+                            <p class="card-text">{{product.details.numberOfFiles}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div> <br>
+
+            <!-- product tags -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h4 class="card-title">Tags</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <p class="card-text">
+                                <span class="badge badge-pill badge-light m-1"  style="font-size: large; font-weight: 400;" *ngFor="let tag of product.tags">{{tag}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>

@@ -1,7 +1,7 @@
 <div class="card">
-    <img [src]=getImage() class="card-img-top" alt="...">
+    <img [src]=getImage() class="card-img-top" alt="..." (click)="showDetail()">
     <div class="card-body">
-      <div class="row">
+      <div class="row" (click)="showDetail()">
         <h5 class="col-9 card-title">{{product.name}}</h5>
         <div class="col-3">
             <span class="star">&#9733;</span>
@@ -12,7 +12,7 @@
         <span class="badge badge-pill badge-light">{{tag}}</span>
       </ng-container>
       <br> <br>
-      <div class="d-flex">
+      <div class="d-flex" (click)="showDetail()">
         <app-avatar [size]="20" [name]="product.username"></app-avatar>
         <p class="card-text" style="margin-left: 8px;">{{product.username}}</p>  
       </div>

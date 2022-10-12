@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,13 +9,14 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 })
 export class RatingComponent implements OnInit {
 
+  @Input() currentRate: number = 0;
+  @Input() readonly: boolean = true;
+
   constructor(config: NgbRatingConfig) {
     config.max = 5;
   }
 
   ngOnInit(): void {
   }
-
-  currentRate = 5
 
 }
