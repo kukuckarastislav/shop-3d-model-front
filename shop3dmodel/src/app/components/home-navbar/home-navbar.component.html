@@ -67,7 +67,7 @@
         </div>        
       </div>
       <div class="col">
-        <div *ngIf="userExist" class="s3m-nav-container" style="justify-content: end;">
+        <div *ngIf="loginResponse.name" class="s3m-nav-container" style="justify-content: end;">
 
           
           <!-- 
@@ -94,18 +94,19 @@
           <mat-icon class="s3m-nav-icon-button">email</mat-icon>
           <mat-icon class="s3m-nav-icon-button">notifications</mat-icon>
           <mat-icon class="s3m-nav-icon-button">cloud_upload</mat-icon>
-          
-
+        
           <ng-template #popContent>
-            nice
-            
+            nice 
+            <br>
+            <button class="btn btn-primary" (click)="logout()">Log out</button>
           </ng-template>
-          <app-avatar [size]="40" [name]="'Rasti'" [ngbPopover]="popContent"></app-avatar>
-          <h5 style="margin-left: 10px; margin-top: 10px;">rakyfx00</h5>
+          <app-avatar [size]="40" [name]="loginResponse.name" [ngbPopover]="popContent"></app-avatar>
+          <h5 style="margin-left: 10px; margin-top: 10px;">{{loginResponse.name}}</h5>
+        
         
         </div>
-        <div *ngIf="!userExist" class="s3m-nav-container" style="justify-content: end;">
-          <a href="/login" class="btn">Login</a>
+        <div *ngIf="!loginResponse.name" class="s3m-nav-container" style="justify-content: end;">
+          <a class="btn" (click)="open(content)">Login</a>
           <a href="/signup" class="btn">Signup</a>
         </div>
       </div>
@@ -113,3 +114,28 @@
   </div>
 </div>
 <div class="s3m-nav-spacer"></div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Login</h4>
+    <button type="button" class="btn btn-outline-secondary"  aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <div class="mb-3">
+        <label for="dateOfBirth">Email</label>
+        <input type="text" [(ngModel)]="loginRequest.email" class="form-control">
+        <br>
+        <label for="dateOfBirth">Password</label>
+        <input type="password" [(ngModel)]="loginRequest.password" class="form-control">
+        <br> <br>
+        <button style="width: 100%;" class="btn btn-primary" (click)="login()">Login</button>
+        <br> <br>
+        <div class="text-center">
+          <p>Not a member? <a href="">Signup now</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

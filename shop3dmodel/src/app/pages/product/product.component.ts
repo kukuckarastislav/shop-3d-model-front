@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
     this.productService.GetProduct(this.product_id).subscribe((data) => {
       this.product = data;
       console.log(this.product);
-      this.product.tags = ["likes" ,"like" ,"follow" ,"likeforlikes" ,"love" ,"instagood" ,"instagram" ,"followforfollowback" ,"followme" ,"photooftheday" ,"photography" ,"bhfyp" ,"instalike" ,"l" ,"instadaily" ,"likeforfollow" ,"picoftheday" ,"fashion" ,"beautiful" ,"me" ,"followers" ,"smile" ,"likeforlike" ,"myself" ,"followback" ,"f" ,"comment" ,"followforfollow" ,"likesforlikes" ,"art"]
+      //this.product.tags = ["likes" ,"like" ,"follow" ,"likeforlikes" ,"love" ,"instagood" ,"instagram" ,"followforfollowback" ,"followme" ,"photooftheday" ,"photography" ,"bhfyp" ,"instalike" ,"l" ,"instadaily" ,"likeforfollow" ,"picoftheday" ,"fashion" ,"beautiful" ,"me" ,"followers" ,"smile" ,"likeforlike" ,"myself" ,"followback" ,"f" ,"comment" ,"followforfollow" ,"likesforlikes" ,"art"]
     }, (error) => {
       console.log(error);
     });
