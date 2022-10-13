@@ -147,11 +147,13 @@
                             <h2 class="card-title">${{product.price}}</h2>
                         </div>
                         <div class="col text-right">
-                            <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon" placement="top" ngbTooltip="Save">
-                            <button class="btn btn-outline-success">Offer price</button>
+                            <img src="../../../assets/icons/save-instagram-active.png" class="s3m-card-icon" placement="top" ngbTooltip="Unsave" (click)="unsave()" *ngIf="product.userInteraction.user_uuid && product.userInteraction.saved">
+                            <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon" placement="top" ngbTooltip="Save" (click)="save()" *ngIf="!product.userInteraction.user_uuid || !product.userInteraction.saved">
+                            <button *ngIf="showBuyOption()" class="btn btn-outline-success">Offer price</button>
                         </div>
                     </div>
-                    <button class="btn btn-success btn-lg" style="width: 100%;">Add to cart</button>
+                    <button *ngIf="showBuyOption()" class="btn btn-success btn-lg" style="width: 100%;">Buy</button>
+                    <button *ngIf="!showBuyOption()" class="btn btn-primary btn-lg" style="width: 100%;">Download</button>
                 </div>
             </div> <br>
 

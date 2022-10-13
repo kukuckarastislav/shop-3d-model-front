@@ -30,5 +30,15 @@ export class ProductService {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/unlike', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
   }
+
+  save(product_uuid: string, user_uuid: string) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/save', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
+  }
+
+  unsave(product_uuid: string, user_uuid: string) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/unsave', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
+  }
     
 }

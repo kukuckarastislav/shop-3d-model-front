@@ -99,4 +99,47 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  unsave() {
+    let user_uuid = this.loginService.getCurrentUser().uuid;
+    if (user_uuid) {
+      this.productService.unsave(this.product.uuid, user_uuid).subscribe((data: any) => {
+        if (data.response == "successfully") {
+          this.product.userInteraction.saved = false;
+        } else {
+          alert("Error?")
+        }
+      }, (err: any) => {
+        console.log(err)
+        alert("Error: " + err.error);
+      });
+    }else {
+      alert("You must be logged in to unsave a product");
+    }
+  }
+
+  save() {
+    let user_uuid = this.loginService.getCurrentUser().uuid;
+    if (user_uuid) {
+      this.productService.save(this.product.uuid, user_uuid).subscribe((data: any) => {
+        if (data.response == "successfully") {
+          this.product.userInteraction.saved = true;
+        } else {
+          alert("Error?")
+        }
+      }, (err: any) => {
+        console.log(err)
+        alert("Error: " + err.error);
+      });
+    } else {
+      alert("You must be logged in to save a product");
+    }
+  }
+
+  showBuyOption() {
+    if (this.product.creator.uuid == this.loginService.getCurrentUser().uuid) 
+      return false;
+    
+    return !this.product.userInteraction.purchased;
+  }
+
 }
