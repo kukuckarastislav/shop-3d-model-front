@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EntityImage } from 'src/app/models/EntityImage';
+import { LoginResponse } from 'src/app/models/LoginResponse';
 import { Product } from 'src/app/models/Product';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
 
@@ -12,13 +14,15 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private loginService: LoginService, private route: ActivatedRoute, private productService: ProductService) { }
   product_id: string = '';
   product: Product = new Product();
   commentsVisible = true;
+  currentUser: LoginResponse = new LoginResponse();
   
 
   ngOnInit(): void {
+    this.currentUser = this.loginService.getCurrentUser();
     this.product_id = this.route.snapshot.paramMap.get('id')!;
     this.productService.GetProduct(this.product_id).subscribe((data) => {
       this.product = data;
@@ -55,6 +59,44 @@ export class ProductComponent implements OnInit {
 
   showComments() {
     this.commentsVisible = true
+  }
+
+  unlike() {
+    let user_uuid = this.loginService.getCurrentUser().uuid;
+    if (user_uuid) {
+      this.productService.unlike(this.product.uuid, user_uuid).subscribe((data: any) => {
+        if (data.response == "successfully") {
+          this.product.numberOfLikes -= 1;
+          this.product.userInteraction.liked = false;
+        } else {
+          alert("Error?")
+        }
+      }, (err: any) => {
+        console.log(err)
+        alert("Error: " + err.error);
+      });
+    }else {
+      alert("You must be logged in to unlike a product");
+    }
+  }
+
+  like() {
+    let user_uuid = this.loginService.getCurrentUser().uuid;
+    if (user_uuid) {
+      this.productService.like(this.product.uuid, user_uuid).subscribe((data: any) => {
+        if (data.response == "successfully") {
+          this.product.numberOfLikes += 1;
+          this.product.userInteraction.liked = true;
+        } else {
+          alert("Error?")
+        }
+      }, (err: any) => {
+        console.log(err)
+        alert("Error: " + err.error);
+      });
+    } else {
+      alert("You must be logged in to like a product");
+    }
   }
 
 }

@@ -34,7 +34,7 @@ export class HomeNavbarComponent implements OnInit {
       this.successfulLogin(this.loginResponse);
       console.log(this.loginResponse)
       this.modalService.dismissAll();
-      //location.reload();
+      location.reload();
     }, (error: any) => { 
 
     });

@@ -29,7 +29,8 @@
                     <app-rating [readonly]="true" [currentRate]="product.averageGrade"></app-rating>
                 </div>
                 <div class="col-2 mt-3">
-                    <img src="../../../assets/icons/heart.svg" class="s3m-card-icon" placement="top" ngbTooltip="Like">
+                    <img src="../../../assets/icons/heart-fill.svg" (click)="unlike()" *ngIf="product.userInteraction.user_uuid && product.userInteraction.liked" class="s3m-card-icon" placement="top" ngbTooltip="Like">
+                    <img src="../../../assets/icons/heart.svg" (click)="like()" *ngIf="!product.userInteraction.user_uuid || !product.userInteraction.liked" class="s3m-card-icon" placement="top" ngbTooltip="Like">
                     <span placement="top" ngbTooltip="Number of likes">{{product.numberOfLikes}}</span>
                 </div>
                 <div class="col-2 mt-3">

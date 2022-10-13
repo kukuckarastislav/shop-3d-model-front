@@ -4,6 +4,7 @@ import { ProductReview } from './ProductReview';
 import { UserAccountDTO } from './UserAccountDTO';
 import { ProductDetails } from './ProductDetails';
 import { ProductComment } from './ProductComment';
+import { ProductUserInteraction } from './ProductUserInteraction';
 
 export class Product {
     constructor(
@@ -24,5 +25,6 @@ export class Product {
         public reviews: ProductReview[] = [],
         public category: ProductCategory = new ProductCategory(),
         public details: ProductDetails = new ProductDetails(),
+        public userInteraction: ProductUserInteraction = new ProductUserInteraction()
     ) {}
   }
