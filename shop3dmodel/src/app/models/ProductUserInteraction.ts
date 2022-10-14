@@ -5,5 +5,6 @@ export class ProductUserInteraction {
         public liked: boolean = false,
         public saved: boolean = false,
         public purchased: boolean = false,
+        public reviewed: boolean = false,
     ) {}
   }

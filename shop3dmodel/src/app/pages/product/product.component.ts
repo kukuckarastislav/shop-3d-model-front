@@ -4,6 +4,7 @@ import { EntityImage } from 'src/app/models/EntityImage';
 import { LoginResponse } from 'src/app/models/LoginResponse';
 import { NewComment } from 'src/app/models/NewComment';
 import { NewCommentReply } from 'src/app/models/NewCommentReply';
+import { NewProductReview } from 'src/app/models/NewProductReview';
 import { Product } from 'src/app/models/Product';
 import { ProductComment } from 'src/app/models/ProductComment';
 import { LoginService } from 'src/app/services/login.service';
@@ -190,7 +191,35 @@ export class ProductComponent implements OnInit {
   }
 
   showReplyForm(comment: ProductComment) {
-    return this.loginService.getCurrentUser().uuid == this.product.creator.uuid && !comment.creatorReply;
+    return this.userLoggedIn() &&
+      this.loginService.getCurrentUser().uuid == this.product.creator.uuid &&
+      !comment.creatorReply;
+  }
+
+  showReviewForm() {
+    return this.userLoggedIn() &&
+      this.loginService.getCurrentUser().uuid != this.product.creator.uuid &&
+      !this.product.userInteraction.reviewed &&
+      !this.product.userInteraction.purchased;
+  }
+
+  addReview() {
+    let review = new NewProductReview(this.newGrade, this.newReviewComment, this.loginService.getCurrentUser().uuid, this.product.uuid)
+    this.productService.addReview(review).subscribe((data: any) => {
+      if (data.response == "successfully") {
+        location.reload();
+      } else {
+        alert("Error?")
+      }
+    }, (err: any) => {
+      console.log(err)
+      alert("Error: " + err.error);
+    });
+  }
+
+  cancelReview() { 
+    this.newReviewComment = "";
+    this.newGrade = 5;
   }
 
 }

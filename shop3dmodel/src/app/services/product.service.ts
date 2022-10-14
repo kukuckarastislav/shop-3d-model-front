@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
 import { NewComment } from '../models/NewComment';
 import { NewCommentReply } from '../models/NewCommentReply';
+import { NewProductReview } from '../models/NewProductReview';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,11 @@ export class ProductService {
   addReply(commentReply: NewCommentReply) {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/comment/reply/add', commentReply, { headers: headers });
+  }
+
+  addReview(review: NewProductReview) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/review/add', review, { headers: headers });
   }
     
 }

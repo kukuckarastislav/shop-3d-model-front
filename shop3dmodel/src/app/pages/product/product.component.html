@@ -135,7 +135,7 @@
                             <h4 class="card-title">Reviews</h4>
                             <hr>
                             <!-- New Review -->
-                            <div *ngIf="product.userInteraction.purchased">
+                            <div *ngIf="showReviewForm()">
                             <div class="row">
                                 <div class="col d-flex">
                                     <app-avatar [size]="30" [name]="currentUser.name"></app-avatar>
@@ -147,13 +147,13 @@
                             </div>
                             <div class="row ml-3">
                                 <div class="col">
-                                    <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
+                                    <textarea class="form-control" [(ngModel)]="newReviewComment" rows="3" placeholder="Write a comment..."></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col text-right">
-                                    <button class="btn btn-secondary m-2" (click)="cancelComment()">Cancel</button>
-                                    <button class="btn btn-primary" (click)="addComment()">Add Review</button>
+                                    <button class="btn btn-secondary m-2" (click)="cancelReview()">Cancel</button>
+                                    <button class="btn btn-primary" (click)="addReview()">Add Review</button>
                                 </div>
                             </div>
                             <hr>
