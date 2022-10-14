@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { EntityImage } from 'src/app/models/EntityImage';
 import { LoginResponse } from 'src/app/models/LoginResponse';
+import { NewComment } from 'src/app/models/NewComment';
+import { NewCommentReply } from 'src/app/models/NewCommentReply';
 import { Product } from 'src/app/models/Product';
+import { ProductComment } from 'src/app/models/ProductComment';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
@@ -19,6 +22,10 @@ export class ProductComponent implements OnInit {
   product: Product = new Product();
   commentsVisible = true;
   currentUser: LoginResponse = new LoginResponse();
+  newComment: string = '';
+
+  newReviewComment: string = '';
+  newGrade: number = 5;
   
 
   ngOnInit(): void {
@@ -135,11 +142,55 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  userLoggedIn() { 
+    return this.loginService.getCurrentUser().uuid;
+  }
+
   showBuyOption() {
     if (this.product.creator.uuid == this.loginService.getCurrentUser().uuid) 
       return false;
     
     return !this.product.userInteraction.purchased;
+  }
+
+  addComment() {
+    let comment = new NewComment(this.loginService.getCurrentUser().uuid, this.product.uuid, this.newComment)
+    this.productService.addComment(comment).subscribe((data: any) => {
+      if (data.response == "successfully") {
+        location.reload();
+      } else {
+        alert("Error?")
+      }
+    }, (err: any) => {
+      console.log(err)
+      alert("Error: " + err.error);
+    });
+  }
+
+  cancelComment() {
+    this.newComment = "";
+  }
+
+  addReply(comment: ProductComment) {
+    let commentReply = new NewCommentReply(this.loginService.getCurrentUser().uuid, this.product.uuid, comment.uuid, comment.creatorReplyInput)
+    this.productService.addReply(commentReply).subscribe((data: any) => {
+      if (data.response == "successfully") {
+        location.reload();
+      } else {
+        alert("Error?")
+      }
+    }, (err: any) => {
+      console.log(err)
+      alert("Error: " + err.error);
+    });
+  }
+
+  cancelReply(comment: ProductComment) {
+    comment.creatorReplyInput = '';
+  }
+
+  showReplyForm(comment: ProductComment) {
+    return this.loginService.getCurrentUser().uuid == this.product.creator.uuid && !comment.creatorReply;
   }
 
 }

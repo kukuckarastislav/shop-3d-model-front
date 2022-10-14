@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
+import { NewComment } from '../models/NewComment';
+import { NewCommentReply } from '../models/NewCommentReply';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +41,16 @@ export class ProductService {
   unsave(product_uuid: string, user_uuid: string) {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/unsave', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
+  }
+
+  addComment(comment: NewComment) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/comment/add', comment, { headers: headers });
+  }
+
+  addReply(commentReply: NewCommentReply) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/comment/reply/add', commentReply, { headers: headers });
   }
     
 }

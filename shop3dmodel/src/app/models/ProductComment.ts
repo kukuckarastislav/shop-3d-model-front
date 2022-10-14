@@ -7,5 +7,7 @@ export class ProductComment {
         public comment: string = '',
         public creatorReply: string = '',
         public userAccount: UserAccountDTO = new UserAccountDTO(),
+
+        public creatorReplyInput: string = '',
     ) {}
   }

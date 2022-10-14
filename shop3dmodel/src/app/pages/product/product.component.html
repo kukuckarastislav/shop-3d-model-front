@@ -56,7 +56,7 @@
             </div>
 
            
-
+            <!-- Comments -->
             <div class="card mt-4">
                 <div class="card-body">
                     <div class="row">
@@ -71,8 +71,29 @@
                         <div class="col">
                             <h4 class="card-title">Comments</h4>
                             <hr>
-
-                            <div *ngFor="let comment of product.comments">
+                            <!-- New Comment Form -->
+                            <div *ngIf="userLoggedIn()">
+                                <div class="row">
+                                    <div class="col d-flex">
+                                        <app-avatar [size]="30" [name]="currentUser.name"></app-avatar>
+                                        <p class="card-text ml-2 mt-1" style="font-size: larg;"><b>{{currentUser.name}}</b></p>
+                                    </div>
+                                </div>
+                                <div class="row ml-3 mt-3">
+                                    <div class="col">
+                                        <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <button class="btn btn-secondary m-2" (click)="cancelComment()">Cancel</button>
+                                        <button class="btn btn-primary" (click)="addComment()">Add Comment</button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <!-- Existing Comments -->
+                            <div *ngFor="let comment of product.comments" class="mt-5">
                                 <div class="row">
                                     <div class="col d-flex">
                                         <app-avatar [size]="30" [name]="comment.userAccount.name"></app-avatar>
@@ -88,8 +109,16 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col mt-2 ml-5">
+                                            <div *ngIf="!showReplyForm(comment) && comment.creatorReply" class="col mt-2 ml-5">
                                                 <p class="card-text"><b>{{product.creator.name}}:</b> {{comment.creatorReply}}</p>
+                                            </div>
+                                            <div *ngIf="showReplyForm(comment)" class="col mt-2 ml-5 d-flex">
+                                                <p class="card-text"><b>{{product.creator.name}}:</b></p> 
+                                                <textarea class="form-control ml-2" [(ngModel)]="comment.creatorReplyInput" rows="2" placeholder="Write a reply..."></textarea>
+                                            </div>
+                                            <div class="col mt-2" *ngIf="showReplyForm(comment)">
+                                                <button class="btn btn-secondary ml-2" (click)="cancelReply(comment)">Cancel</button>
+                                                <button class="btn btn-primary ml-2" (click)="addReply(comment)">Reply</button>
                                             </div>
                                         </div>
                                     </div>
@@ -100,11 +129,36 @@
 
                         </div>
                     </div>
+                    <!-- Reviews -->
                     <div class="row" *ngIf="!commentsVisible">
                         <div class="col">
                             <h4 class="card-title">Reviews</h4>
                             <hr>
-
+                            <!-- New Review -->
+                            <div *ngIf="product.userInteraction.purchased">
+                            <div class="row">
+                                <div class="col d-flex">
+                                    <app-avatar [size]="30" [name]="currentUser.name"></app-avatar>
+                                    <p class="card-text ml-2 mt-1" style="font-size: larg;"><b>{{currentUser.name}}</b></p>
+                                </div>
+                                <div class="col text-right">
+                                    <app-rating class="ml-5" [readonly]="false" [(currentRate)]="newGrade"></app-rating>
+                                </div>
+                            </div>
+                            <div class="row ml-3">
+                                <div class="col">
+                                    <textarea class="form-control" [(ngModel)]="newComment" rows="3" placeholder="Write a comment..."></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col text-right">
+                                    <button class="btn btn-secondary m-2" (click)="cancelComment()">Cancel</button>
+                                    <button class="btn btn-primary" (click)="addComment()">Add Review</button>
+                                </div>
+                            </div>
+                            <hr>
+                            </div>  
+                            <!-- Existing Reviews -->
                             <div *ngFor="let review of product.reviews">
                                 <div class="row">
                                     <div class="col d-flex">

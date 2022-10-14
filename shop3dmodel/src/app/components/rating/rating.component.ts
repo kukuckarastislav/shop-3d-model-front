@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,6 +10,7 @@ import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
 export class RatingComponent implements OnInit {
 
   @Input() currentRate: number = 0;
+  @Output() currentRateChange = new EventEmitter<number>();
   @Input() readonly: boolean = true;
 
   constructor(config: NgbRatingConfig) {
@@ -17,6 +18,11 @@ export class RatingComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  rateChanged(event: any) {
+    console.log(event);
+    this.currentRateChange.emit(this.currentRate);
   }
 
 }
