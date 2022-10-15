@@ -222,4 +222,8 @@ export class ProductComponent implements OnInit {
     this.newGrade = 5;
   }
 
+  redirectToUserPage() {
+    window.location.href = '/user/products/' + this.product.creator.uuid
+  }
+
 }

@@ -21,9 +21,19 @@ export class ProductService {
     return this._http.get<any>(this.url+'api/product', { headers: headers });
   }
 
+  GetProductPreviewByCreator(creator_id: string) {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url+'api/product/creator/'+creator_id, { headers: headers });
+  }
+
   GetProductPreviewAdvanceSearch(search: AdvanceSearch) {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/advance-search', search, { headers: headers });
+  }
+
+  GetProductPreviewByCreatorAdvanceSearch(search: AdvanceSearch, creator_id: string) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/advance-search/creator/'+creator_id, search, { headers: headers });
   }
 
   GetProduct(id: string) {

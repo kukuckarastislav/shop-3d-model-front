@@ -217,10 +217,10 @@
                     <div class="row">
                         <div class="col-4">
                             <!-- <img src="../../../assets/rastislav.jpg" class="s3m-profile-img" alt=""> -->
-                            <app-avatar [size]="80" [name]="product.creator.name"></app-avatar>
+                            <app-avatar (click)="redirectToUserPage()" [size]="80" [name]="product.creator.name"></app-avatar>
                         </div>
                         <div class="col text-left">
-                            <h4 class="card-title">{{product.creator.name}}</h4>
+                            <h4 (click)="redirectToUserPage()" class="card-title">{{product.creator.name}}</h4>
                             <p class="card-text">{{product.creator.firstname}} {{product.creator.lastname}}</p>
                             <button class="btn btn-outline-primary" style="width: 100%;">Message me</button>
                         </div>
