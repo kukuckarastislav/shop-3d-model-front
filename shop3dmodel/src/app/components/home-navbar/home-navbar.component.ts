@@ -13,6 +13,9 @@ export class HomeNavbarComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private loginService: LoginService) { }
 
+  navbarSearch: string = '';
+  navbarCategory: string = '';
+
   ngOnInit(): void {
     this.loginResponse = this.loginService.getCurrentUser();
   }
@@ -46,6 +49,15 @@ export class HomeNavbarComponent implements OnInit {
 
   logout() {
     this.loginService.logout();
+  }
+
+  searchFun() {
+    if(this.navbarSearch)
+      window.location.href = '/search/' + this.navbarSearch;
+  }
+
+  categoryFun(category: string) {
+      window.location.href = '/category/' + category;
   }
 
 }
