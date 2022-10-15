@@ -5,6 +5,7 @@ import { LoginService } from './login.service';
 import { NewComment } from '../models/NewComment';
 import { NewCommentReply } from '../models/NewCommentReply';
 import { NewProductReview } from '../models/NewProductReview';
+import { AdvanceSearch } from '../models/AdvanceSearch';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,13 @@ export class ProductService {
   url = environment.backend_url;
 
   GetProductPreview() {
-    return this._http.get<any>(this.url+'api/product');
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url+'api/product', { headers: headers });
+  }
+
+  GetProductPreviewAdvanceSearch(search: AdvanceSearch) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/advance-search', search, { headers: headers });
   }
 
   GetProduct(id: string) {

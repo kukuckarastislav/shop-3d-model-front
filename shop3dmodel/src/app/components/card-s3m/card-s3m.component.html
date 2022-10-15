@@ -1,6 +1,7 @@
 <div class="card">
     <img [src]=getImage() class="card-img-top s3m-img" alt="..." (click)="showDetail()">
     <div class="card-body">
+      <a [href]="product.category" class="">{{product.category}}</a>
       <div class="row" (click)="showDetail()">
         <h5 class="col-9 card-title">{{product.name}}</h5>
         <div class="col-3">
@@ -18,7 +19,8 @@
       </div>
       <hr>
       <div class="s3m-card-fotter">
-        <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon">
+        <img src="../../../assets/icons/save-instagram-active.png" class="s3m-card-icon" placement="top" ngbTooltip="Unsave" (click)="unsave()" *ngIf="product.saved">
+        <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon" placement="top" ngbTooltip="Save" (click)="save()" *ngIf="!product.saved">
         <h5 class="card-title" style="margin: 0px;">${{product.price}}</h5>
       </div>
     </div>
