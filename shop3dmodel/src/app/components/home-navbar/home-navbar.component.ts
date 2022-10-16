@@ -64,4 +64,8 @@ export class HomeNavbarComponent implements OnInit {
     window.location.href = '/user/products/' + this.loginResponse.uuid;
   }
 
+  showSettings() {
+    window.location.href = '/settings';
+  }
+
 }

@@ -1,0 +1,105 @@
+<div class="s3m-container">
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+
+            <div class="card mt-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col d-flex" style="justify-content: space-around;">
+                            <app-avatar [size]="180" [name]="userAccount.name"></app-avatar>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col text-center">
+                            <h3 class="card-title">{{userAccount.name}}</h3>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-2"></div>
+                        <div class="col">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input [disabled]="true" [(ngModel)]="userAccount.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label >Username</label>
+                                <input [disabled]="disabled" [(ngModel)]="userAccount.name" type="text" class="form-control" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label >First name</label>
+                                <input [disabled]="disabled" [(ngModel)]="userAccount.firstname" type="text" class="form-control" placeholder="First name">
+                            </div>
+                            <div class="form-group">
+                                <label >Last name</label>
+                                <input [disabled]="disabled" [(ngModel)]="userAccount.lastname" type="text" class="form-control" placeholder="Last name">
+                            </div> 
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label >Date of birth</label>
+                                        <input [disabled]="disabled" [(ngModel)]="userAccount.birthday" type="date" class="form-control">
+                                    </div>
+                                </div>
+                            </div> <br>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >Country</label>
+                                        <input [disabled]="disabled" [(ngModel)]="userAccount.address.country" type="text" class="form-control" placeholder="Country">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >Street</label>
+                                        <input [disabled]="disabled" [(ngModel)]="userAccount.address.street" type="text" class="form-control" placeholder="Street">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >City</label>
+                                        <input [disabled]="disabled" [(ngModel)]="userAccount.address.city" type="text" class="form-control" placeholder="City">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label >Number</label>
+                                        <input [disabled]="disabled" [(ngModel)]="userAccount.address.number" type="text" class="form-control" placeholder="Number">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <label>Biography</label>
+                            <textarea [disabled]="disabled" [(ngModel)]="userAccount.biography" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+
+                            <br> <br>
+                            <button (click)="startEdit()" *ngIf="disabled" class="btn btn-primary btn-lg" style="width: 100%;">Edit</button>
+                            <br>
+                            <button (click)="cancelEdit()" *ngIf="!disabled" class="btn btn-outline-secondary btn-lg" style="width: 100%;">Cancel</button>
+                            <br> <br>
+                            <button (click)="save()" *ngIf="!disabled" class="btn btn-success btn-lg" style="width: 100%;">Save</button>
+                            
+
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-3"></div>
+    </div>
+
+    <br>
+
+</div>

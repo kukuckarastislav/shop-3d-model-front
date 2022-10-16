@@ -97,6 +97,7 @@
         
           <ng-template #popContent>
             <button ngbDropdownItem (click)="showMyPage()">My Page</button>
+            <button ngbDropdownItem (click)="showSettings()">Settings</button>
             <button ngbDropdownItem (click)="logout()">Log out</button>
           </ng-template>
           <app-avatar [size]="40" [name]="loginResponse.name" [ngbPopover]="popContent"></app-avatar>

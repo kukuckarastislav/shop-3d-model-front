@@ -13,5 +13,6 @@ export class UserAccountDTO {
 		public responseCountPercentage: number = -1,
 		public biography: string = '',
 		public address: Address = new Address(),
+		public birthday: Date = new Date(),
     ) {}
   }

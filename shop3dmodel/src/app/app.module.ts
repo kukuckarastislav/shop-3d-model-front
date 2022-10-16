@@ -20,6 +20,7 @@ import { SearchComponent } from './components/search/search.component';
 import { UserComponent } from './pages/user/user.component';
 import { UserProductsComponent } from './components/user-products/user-products.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SignupComponent } from './pages/signup/signup.component';
     SearchComponent,
     UserComponent,
     UserProductsComponent,
-    SignupComponent
+    SignupComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
