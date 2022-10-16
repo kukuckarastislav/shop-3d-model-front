@@ -31,9 +31,9 @@ export class ProductService {
     return this._http.post<any>(this.url+'api/product/advance-search', search, { headers: headers });
   }
 
-  GetProductPreviewByCreatorAdvanceSearch(search: AdvanceSearch, creator_id: string) {
+  GetProductPreviewByCreatorAdvanceSearch(search: AdvanceSearch, creator_id: string, type_of_list: string) {
     const headers = this.loginService.getHeaders();
-    return this._http.post<any>(this.url+'api/product/advance-search/creator/'+creator_id, search, { headers: headers });
+    return this._http.post<any>(this.url+'api/product/advance-search/creator/' + type_of_list + '/' + creator_id, search, { headers: headers });
   }
 
   GetProduct(id: string) {

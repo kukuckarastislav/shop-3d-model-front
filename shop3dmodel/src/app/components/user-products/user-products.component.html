@@ -4,7 +4,21 @@
         <div class="col">
             <app-search [search]="search" (searchChange)="searchFun($event)"></app-search>
         </div>
-        
+    </div>
+
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <button class="btn btn-outline-primary btn-lg m-1" (click)="showProducts()">Products</button>
+                    <button class="btn btn-outline-primary btn-lg m-1" (click)="showLiked()">Liked</button>
+                    <button *ngIf="userIsOwner()" class="btn btn-outline-primary btn-lg m-1" (click)="showSaved()">Saved</button>
+                    <button *ngIf="userIsOwner()" class="btn btn-outline-primary btn-lg m-1" (click)="showPurchased()">Purchased</button>
+                    <hr>
+                    <h5>{{listName}}</h5>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-3">
