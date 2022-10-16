@@ -60,4 +60,8 @@ export class HomeNavbarComponent implements OnInit {
       window.location.href = '/category/' + category;
   }
 
+  showMyPage() {
+    window.location.href = '/user/products/' + this.loginResponse.uuid;
+  }
+
 }

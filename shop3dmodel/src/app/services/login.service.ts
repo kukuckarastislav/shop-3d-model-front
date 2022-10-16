@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginRequest } from '../models/LoginRequest';
 import { LoginResponse } from '../models/LoginResponse';
+import { SignupRequest } from '../models/SignupRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +60,9 @@ export class LoginService {
 
   loginSetUser(loginResponse: LoginResponse) {
     localStorage.setItem('currentUser', JSON.stringify(loginResponse));
+  }
+
+  signup(signupRequest: SignupRequest) {
+    return this._http.post<any>(this.url+'auth/signup', signupRequest);
   }
 }
