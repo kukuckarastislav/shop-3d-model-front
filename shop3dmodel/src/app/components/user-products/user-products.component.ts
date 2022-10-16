@@ -65,6 +65,9 @@ export class UserProductsComponent implements OnInit {
     return this.loginService.getCurrentUser().uuid == this.user_id;
   }
 
+  redirectToCreatePage() {
+    window.location.href = '/create';
+  }
 
 
 }

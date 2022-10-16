@@ -1,0 +1,13 @@
+.prodcut-img{
+    max-width: 970px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.removeImageBtn{
+    position: absolute;
+}
+
+.icon-pointer{
+    cursor: pointer;
+}

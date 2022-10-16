@@ -16,6 +16,11 @@
                     <button *ngIf="userIsOwner()" class="btn btn-outline-primary btn-lg m-1" (click)="showPurchased()">Purchased</button>
                     <hr>
                     <h5>{{listName}}</h5>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button *ngIf="userIsOwner()" (click)="redirectToCreatePage()" class="btn btn-primary">Create Product</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

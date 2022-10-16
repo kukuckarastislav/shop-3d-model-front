@@ -6,6 +6,7 @@ import { NewComment } from '../models/NewComment';
 import { NewCommentReply } from '../models/NewCommentReply';
 import { NewProductReview } from '../models/NewProductReview';
 import { AdvanceSearch } from '../models/AdvanceSearch';
+import { CreateNewProduct } from '../models/CreateNewProduct';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,11 @@ export class ProductService {
   BuyProduct(product_uuid: string, user_uuid: string) {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/buy', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
+  }
+
+  CreateProduct(product: CreateNewProduct) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/create', product, { headers: headers });
   }
     
 }

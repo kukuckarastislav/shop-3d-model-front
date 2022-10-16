@@ -68,4 +68,8 @@ export class HomeNavbarComponent implements OnInit {
     window.location.href = '/settings';
   }
 
+  redirectToCreatePage() {
+    window.location.href = '/create';
+  }
+
 }

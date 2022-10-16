@@ -7,12 +7,14 @@ import { UserComponent } from './pages/user/user.component';
 import { UserProductsComponent } from './components/user-products/user-products.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'search/:name', component: HomeComponent },
   { path: 'category/:category', component: HomeComponent },
   { path: 'product/:id', component: ProductComponent },
+  { path: 'create', component: CreateProductComponent },
   {
     path: 'user', component: UserComponent,
     children: [

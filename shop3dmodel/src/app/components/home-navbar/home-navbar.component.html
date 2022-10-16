@@ -93,14 +93,14 @@
 
           <mat-icon class="s3m-nav-icon-button">email</mat-icon>
           <mat-icon class="s3m-nav-icon-button">notifications</mat-icon>
-          <mat-icon class="s3m-nav-icon-button">cloud_upload</mat-icon>
+          <mat-icon (click)="redirectToCreatePage()" class="s3m-nav-icon-button">cloud_upload</mat-icon>
         
           <ng-template #popContent>
             <button ngbDropdownItem (click)="showMyPage()">My Page</button>
             <button ngbDropdownItem (click)="showSettings()">Settings</button>
             <button ngbDropdownItem (click)="logout()">Log out</button>
           </ng-template>
-          <app-avatar [size]="40" [name]="loginResponse.name" [ngbPopover]="popContent"></app-avatar>
+          <app-avatar [size]="40" [name]="loginResponse.name" [ngbPopover]="popContent" style="cursor: pointer;"></app-avatar>
           <h5 style="margin-left: 10px; margin-top: 10px;">{{loginResponse.name}}</h5>
         
         

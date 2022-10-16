@@ -1,0 +1,249 @@
+<div class="s3m-container">
+    <br>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <div class="form-group">
+                                <h4>Category</h4>
+                                <select [(ngModel)]="product.category" class="form-control btn-lg" id="exampleFormControlSelect1">
+                                  <option value=""></option>
+                                  <option value="Nature">Nature</option>
+                                  <option value="Food">Food</option>
+                                  <option value="Exterior">Exterior</option>
+                                  <option value="Interior">Interior</option>
+                                  <option value="Vehicles">Vehicles</option>
+                                  <option value="Electronics">Electronics</option>
+                                  <option value="Toys">Toys</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <h4>Product Name</h4>
+                                <input [(ngModel)]="product.name" type="text" class="form-control btn-lg" placeholder="Product name...">
+                            </div> 
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <h4>Price ($)</h4>
+                        <div class="row">
+                            <div class="col-2">
+                                <input [(ngModel)]="product.price" type="number" min="0" value="49" class="form-control btn-lg">
+                            </div>
+                            <div class="col" *ngIf="!product.price">
+                                <h5 class="text-success mt-2">FREE</h5>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Images -->
+    <div class="row mt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <h6 class="text-center">Images</h6>
+                            <input
+                                class="file-input"
+                                type="file"
+                                id="inp"
+                                (change)="handleFileInput($any($event).target.files)"
+                                />
+                            <br> <br>
+                            <div class="overflow-auto card pb-3" style="height: 426px;">
+                                <div class="card-body">
+                                    <div *ngFor="let image of imagesForFront; let i = index" >
+                                        <div class="card">
+                                            <div class="row" style="height: 100px;">
+                                                <div class="col-7">
+                                                    <img class="img-fluid" [src]="image.url" style="height: 100px; max-width: 300px;">
+                                                </div>
+                                                <div class="col-5 text-right">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <mat-icon (click)="moveUp(image, i)" class="icon-pointer">arrow_upward</mat-icon>
+                                                                <mat-icon (click)="moveDown(image, i)" class="icon-pointer">arrow_downward</mat-icon>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="mt-3">{{image.order}}</div>
+                                                            </div>
+                                                            <div class="col">
+                                                                <button (click)="removeImage(image, i)" class="btn btn-outline-danger btn-sm" style="margin-right: -21px; margin-top: -33px;">x</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <br>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-8">
+                            <ngb-carousel [interval]="20000">
+                                <ng-template ngbSlide *ngFor="let img of imagesForFront; let i = index">
+                                  <div class="picsum-img-wrapper" style="display: flex; justify-content: center;">
+                                    <img [src]="getImageURL(img)" class="prodcut-img" alt="Random first slide">
+                                  </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row mt-4">
+
+        <div class="col">
+
+            <!-- Description -->
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h5>Description</h5>
+                                <textarea [(ngModel)]="product.description" class="form-control" rows="5" placeholder="Description..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tags -->
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="text-center">Tags</h5> <br>
+        
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <textarea [(ngModel)]="tags" (keyup)="keyUpTag($event)" class="form-control" aria-describedby="tags" rows="6" placeholder="Tags..."></textarea>
+                                        <small class="form-text text-muted text-left">Coma separated tags</small>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="col text-center">
+                                                <p class="card-text">
+                                                    <span class="badge badge-pill badge-light m-1"  style="font-size: large; font-weight: 400;" *ngFor="let tag of product.tags">{{tag}}</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-3"> 
+            <!-- Details -->
+            <div class="card">
+                <div class="card-body" style="font-weight: bold;">
+                    <div class="row">
+                        <div class="col text-center">
+                            <h5 class="card-title">Details</h5>
+                        </div>
+                    </div>
+                    <div class="row" >
+                        <div class="col">
+                            <p class="card-text">Animated</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.animated" class="form-check-input" type="checkbox">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Rigged</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.rigged" class="form-check-input" type="checkbox">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Textured</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.textured" class="form-check-input" type="checkbox">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">PBR</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.pbr" class="form-check-input" type="checkbox">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Materials</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.numberOfMaterials" type="number" min="0" class="form-control btn-sm">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Vertices</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.numberOfVertices" type="number" min="0" class="form-control btn-sm">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Polygons</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.numberOfPolygons" type="number" min="0" class="form-control btn-sm">
+                        </div>
+                    </div><hr>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Files</p>
+                        </div>
+                        <div class="col text-right">
+                            <input [(ngModel)]="product.details.numberOfFiles" type="number" min="0" class="form-control btn-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="row mt-4">
+        <div class="col text-center">
+            <button (click)="createProduct()" class="btn btn-primary mt-4 btn-lg">Create</button>
+        </div>
+    </div>
+    <br> <br>
+
+</div>
