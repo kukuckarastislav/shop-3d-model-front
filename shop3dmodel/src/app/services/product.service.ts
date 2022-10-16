@@ -75,5 +75,10 @@ export class ProductService {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/review/add', review, { headers: headers });
   }
+
+  BuyProduct(product_uuid: string, user_uuid: string) {
+    const headers = this.loginService.getHeaders();
+    return this._http.post<any>(this.url+'api/product/buy', {"product_uuid":product_uuid,"user_uuid":user_uuid}, { headers: headers });
+  }
     
 }

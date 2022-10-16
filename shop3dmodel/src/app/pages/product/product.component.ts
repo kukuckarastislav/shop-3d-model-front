@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EntityImage } from 'src/app/models/EntityImage';
 import { LoginResponse } from 'src/app/models/LoginResponse';
 import { NewComment } from 'src/app/models/NewComment';
@@ -7,6 +8,7 @@ import { NewCommentReply } from 'src/app/models/NewCommentReply';
 import { NewProductReview } from 'src/app/models/NewProductReview';
 import { Product } from 'src/app/models/Product';
 import { ProductComment } from 'src/app/models/ProductComment';
+import { ProductUserInteraction } from 'src/app/models/ProductUserInteraction';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
@@ -18,7 +20,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private route: ActivatedRoute, private productService: ProductService) { }
+  constructor(private modalService: NgbModal, private loginService: LoginService, private route: ActivatedRoute, private productService: ProductService) { }
   product_id: string = '';
   product: Product = new Product();
   commentsVisible = true;
@@ -224,6 +226,25 @@ export class ProductComponent implements OnInit {
 
   redirectToUserPage() {
     window.location.href = '/user/products/' + this.product.creator.uuid
+  }
+
+  buyProduct(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    }, (reason) => {
+    });
+  }
+
+  buy() {
+    this.productService.BuyProduct(this.product.uuid, this.currentUser.uuid).subscribe((data: any) => {
+      if (data.response == "successfully") {
+        location.reload();
+      } else {
+        alert("Error?")
+      }
+    } , (err: any) => {
+      console.log(err)
+      alert("Error: " + err.error);
+    } );
   }
 
 }

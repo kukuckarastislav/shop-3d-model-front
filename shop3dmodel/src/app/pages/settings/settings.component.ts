@@ -39,6 +39,7 @@ export class SettingsComponent implements OnInit {
     this.userService.UpdateUser(this.userAccount).subscribe((data) => {
       this.userAccount = data;
       this.disabled = true;
+      //odlogovati usera nek se opet loginuje? 
     }, (err: any) => {
       alert("Error: " + err.error);
     } );

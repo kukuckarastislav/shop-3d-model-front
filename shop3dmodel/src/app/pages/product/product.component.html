@@ -206,7 +206,7 @@
                             <button *ngIf="showBuyOption()" class="btn btn-outline-success">Offer price</button>
                         </div>
                     </div>
-                    <button *ngIf="showBuyOption()" class="btn btn-success btn-lg" style="width: 100%;">Buy</button>
+                    <button (click)="buyProduct(content)" *ngIf="showBuyOption()" class="btn btn-success btn-lg" style="width: 100%;">Buy</button>
                     <button *ngIf="!showBuyOption()" class="btn btn-primary btn-lg" style="width: 100%;">Download</button>
                 </div>
             </div> <br>
@@ -332,3 +332,25 @@
     </div>
 
 </div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{product.name}}</h4>
+      <button type="button" class="btn btn-outline-secondary"  aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <div class="modal-body">
+      <div>
+        <div class="mb-3">
+            <h6>Seller: {{product.creator.name}}</h6>
+            <h6>{{product.creator.firstname}} {{product.creator.firstname}}</h6>
+
+            <h4 class="mt-4">Price: ${{product.price}}</h4>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Cancel click')">Cancel</button>
+        <button type="button" class="btn btn-success" (click)="buy()">Buy</button>
+    </div>
+</ng-template>
