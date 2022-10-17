@@ -28,17 +28,32 @@
                         </div>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <h4>Price ($)</h4>
-                        <div class="row">
-                            <div class="col-2">
-                                <input [(ngModel)]="product.price" type="number" min="0" value="49" class="form-control btn-lg">
-                            </div>
-                            <div class="col" *ngIf="!product.price">
-                                <h5 class="text-success mt-2">FREE</h5>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <h4>Price ($)</h4>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input [(ngModel)]="product.price" type="number" min="0" value="49" class="form-control btn-lg">
+                                    </div>
+                                    <div class="col" *ngIf="!product.price">
+                                        <h5 class="text-success mt-2">FREE</h5>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div> 
+                        <div class="col">
+                            <h4>Product File (.zip)</h4>
+                            <input
+                                class="file-input"
+                                type="file"
+                                id="inp"
+                                (change)="handleProductFileInput($any($event).target.files)"
+                                />
+
+                        </div>
+                    </div>
+                     
                 </div>
             </div>
         </div>

@@ -97,6 +97,7 @@
         
           <ng-template #popContent>
             <button ngbDropdownItem (click)="showMyPage()">My Page</button>
+            <button ngbDropdownItem (click)="showMyPurchases()">My Purchases</button>
             <button ngbDropdownItem (click)="showSettings()">Settings</button>
             <button ngbDropdownItem (click)="logout()">Log out</button>
           </ng-template>
@@ -132,7 +133,7 @@
         <button style="width: 100%;" class="btn btn-primary" (click)="login()">Login</button>
         <br> <br>
         <div class="text-center">
-          <p>Not a member? <a href="">Signup now</a></p>
+          <p>Not a member? <a href="/signup">Signup now</a></p>
         </div>
       </div>
     </div>

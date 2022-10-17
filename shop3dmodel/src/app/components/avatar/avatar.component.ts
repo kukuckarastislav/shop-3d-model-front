@@ -17,7 +17,16 @@ export class AvatarComponent implements OnInit {
   
   nameLogo() {
     if (this.name != null && this.name !== '') {
-      let arrS = this.name.split(" ")
+      let arrS = this.name.trim().split(" ")
+      for (let i = 0; i < arrS.length; i++) {
+        arrS[i] = arrS[i].trim();
+      }
+      for (let i = 0; i < arrS.length; i++) {
+        if (arrS[i] === '') {
+          arrS.splice(i, 1);
+          i--;
+        }
+      }
       let text = ""
       for (let s of arrS) {
         text = text + s[0]

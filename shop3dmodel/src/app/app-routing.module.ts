@@ -8,6 +8,7 @@ import { UserProductsComponent } from './components/user-products/user-products.
 import { SignupComponent } from './pages/signup/signup.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
+import { PurchasesComponent } from './pages/purchases/purchases.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'category/:category', component: HomeComponent },
   { path: 'product/:id', component: ProductComponent },
   { path: 'create', component: CreateProductComponent },
+  { path: 'my-purchases', component: PurchasesComponent },
   {
     path: 'user', component: UserComponent,
     children: [

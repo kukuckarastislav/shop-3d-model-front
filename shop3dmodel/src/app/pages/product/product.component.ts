@@ -12,6 +12,7 @@ import { ProductUserInteraction } from 'src/app/models/ProductUserInteraction';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { environment } from 'src/environments/environment';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-product',
@@ -149,6 +150,10 @@ export class ProductComponent implements OnInit {
     return this.loginService.getCurrentUser().uuid;
   }
 
+  userIsOwner() { 
+    return this.userLoggedIn() == this.product.creator.uuid;
+  }
+
   showBuyOption() {
     if (this.product.creator.uuid == this.loginService.getCurrentUser().uuid) 
       return false;
@@ -242,6 +247,23 @@ export class ProductComponent implements OnInit {
         alert("Error?")
       }
     } , (err: any) => {
+      console.log(err)
+      alert("Error: " + err.error);
+    } );
+  }
+
+  download() {
+    this.productService.DownloadProduct(this.product.uuid).subscribe((data: any) => {
+      saveAs(data, this.product.name);
+      /*
+      const blob = new Blob([data], {
+        type: 'application/octet-stream'
+      });
+      saveAs(blob, this.product.name);
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+      */
+    }, (err: any) => {
       console.log(err)
       alert("Error: " + err.error);
     } );

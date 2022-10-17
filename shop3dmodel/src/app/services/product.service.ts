@@ -86,5 +86,16 @@ export class ProductService {
     const headers = this.loginService.getHeaders();
     return this._http.post<any>(this.url+'api/product/create', product, { headers: headers });
   }
+
+  DownloadProduct(product_uuid: string) {
+    const headers = this.loginService.getHeaders();
+    headers.set('responseType', 'blob');
+    return this._http.get<any>(this.url+'api/product/download/'+product_uuid, { headers: headers });
+  }
+
+  GetMyPurchases() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url+'api/product/my-purchases', { headers: headers });
+  }
     
 }

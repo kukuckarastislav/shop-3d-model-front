@@ -18,8 +18,11 @@
             
             <!-- Name -->
             <div class="row mt-3">
-                <div class="col">
+                <div class="col-11">
                     <h2 class="">{{product.name}}</h2>
+                </div>
+                <div class="col-1">
+                    <button class="btn btn-outline-secondary" *ngIf="userIsOwner()">Edit</button>
                 </div>
             </div>
             
@@ -203,11 +206,11 @@
                         <div class="col text-right">
                             <img src="../../../assets/icons/save-instagram-active.png" class="s3m-card-icon" placement="top" ngbTooltip="Unsave" (click)="unsave()" *ngIf="product.userInteraction.user_uuid && product.userInteraction.saved">
                             <img src="../../../assets/icons/save-instagram.png" class="s3m-card-icon" placement="top" ngbTooltip="Save" (click)="save()" *ngIf="!product.userInteraction.user_uuid || !product.userInteraction.saved">
-                            <button *ngIf="showBuyOption()" class="btn btn-outline-success">Offer price</button>
+                            <button *ngIf="showBuyOption() && false" class="btn btn-outline-success">Offer price</button>
                         </div>
                     </div>
                     <button (click)="buyProduct(content)" *ngIf="showBuyOption()" class="btn btn-success btn-lg" style="width: 100%;">Buy</button>
-                    <button *ngIf="!showBuyOption()" class="btn btn-primary btn-lg" style="width: 100%;">Download</button>
+                    <button (click)="download()" *ngIf="!showBuyOption()" class="btn btn-primary btn-lg" style="width: 100%;">Download</button>
                 </div>
             </div> <br>
 
@@ -222,7 +225,7 @@
                         <div class="col text-left">
                             <h4 (click)="redirectToUserPage()" class="card-title">{{product.creator.name}}</h4>
                             <p class="card-text">{{product.creator.firstname}} {{product.creator.lastname}}</p>
-                            <button class="btn btn-outline-primary" style="width: 100%;">Message me</button>
+                            <button hidden class="btn btn-outline-primary" style="width: 100%;">Message me</button>
                         </div>
                     </div> <hr>
                     <div class="row" *ngIf="product.creator.responseCountPercentage > 0">

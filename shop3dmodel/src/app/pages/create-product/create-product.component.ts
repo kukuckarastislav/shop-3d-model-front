@@ -34,6 +34,10 @@ export class CreateProductComponent implements OnInit {
   }
   //// 
 
+  handleProductFileInput(files: FileList) { 
+    
+  }
+
   fileToUpload: File | null = null;
   base64: string | any = '';
   
