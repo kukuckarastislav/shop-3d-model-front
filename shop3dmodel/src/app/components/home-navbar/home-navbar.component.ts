@@ -76,4 +76,8 @@ export class HomeNavbarComponent implements OnInit {
     window.location.href = '/my-purchases';
   }
 
+  showMySales() {
+    window.location.href = '/my-sales';
+  }
+
 }

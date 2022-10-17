@@ -1,0 +1,111 @@
+<div class="s3m-container">
+
+    <br>
+    <div class="row">
+
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Product name</label>
+                        <input [(ngModel)]="searchProductName" type="text" class="form-control" placeholder="Product name">
+                    </div>
+                    <div class="form-group">
+                        <label >User name</label>
+                        <input [(ngModel)]="searchUserName" type="text" class="form-control" placeholder="User name">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Category</label>
+                        <select [(ngModel)]="searchCategory" class="form-control" id="exampleFormControlSelect1">
+                          <option value="All">All</option>
+                          <option value="Nature">Nature</option>
+                          <option value="Food">Food</option>
+                          <option value="Exterior">Exterior</option>
+                          <option value="Interior">Interior</option>
+                          <option value="Vehicles">Vehicles</option>
+                          <option value="Electronics">Electronics</option>
+                          <option value="Toys">Toys</option>
+                        </select>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Sort by</label>
+                        <select [(ngModel)]="sortType" class="form-control" (change)="sortBySortType()">
+                            <option value="DATE_DESC">Date Descending</option>
+                            <option value="DATE_ASC">Date Ascending</option>
+                            <option value="PRICE_ASC">Price Ascending</option>
+                            <option value="PRICE_DESC">Price Descending</option>
+                        </select>
+                    </div>
+                    
+                    
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="card">
+                <div class="card-body">
+                    <h3>My Sales</h3> <br>
+                    <div class="row">
+                        <div class="col-2">
+                            Image
+                        </div>
+                        <div class="col-4">
+                            Name
+                        </div>
+                        <div class="col-2">
+                            Buyer info
+                        </div>
+                        <div class="col-1">
+                            Original price
+                        </div>
+                        <div class="col-1">
+                            Purchased price
+                        </div>
+                        <div class="col-2 text-right">
+                            Date
+                        </div>
+                    </div> <hr>
+
+                    <div *ngFor="let purchase of purchases; let i = index">
+                        <div *ngIf="showPurchaseIf(purchase)">
+                        <div class="row">
+                            <div class="col-2 s3m-click"  (click)="redirectProductPage(purchase)">
+                                <img class="img-fluid" [src]="getImgURL(purchase)" style="height: 100px; max-width: 300px;">
+                            </div>
+                            <div class="col-4">
+                                <h6 class="s3m-click" (click)="redirectProductPage(purchase)">{{purchase.productPreviewDTO.name}}</h6>
+                            </div>
+                            <div class="col-2">
+                                <div class="row s3m-click"  (click)="redirectUserPage(purchase)">
+                                    <div class="col d-flex">
+                                        <app-avatar [size]="30" [name]="purchase.buyer.name"></app-avatar>
+                                        <p class="card-text ml-2 mt-1" style="font-size: larg;"><b>{{purchase.buyer.name}}</b></p>
+                                    </div>
+                                </div>
+                                <div class="mt-2">{{purchase.buyer.firstname}} {{purchase.buyer.lastname}}</div>
+                                <div>{{purchase.buyer.email}}</div>
+                            </div>
+                            <div class="col-1">
+                                ${{purchase.originalPrice}}
+                            </div>
+                            <div class="col-1">
+                                <h6>${{purchase.purchasedPrice}}</h6>
+                            </div>
+                            <div class="col-2 text-right">
+                                {{purchase.date | date: 'HH:mm - dd.MM.yyyy'}}
+                            </div>
+                        </div> <hr>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -23,6 +23,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { PurchasesComponent } from './pages/purchases/purchases.component';
+import { SalesComponent } from './pages/sales/sales.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PurchasesComponent } from './pages/purchases/purchases.component';
     SignupComponent,
     SettingsComponent,
     CreateProductComponent,
-    PurchasesComponent
+    PurchasesComponent,
+    SalesComponent
   ],
   imports: [
     BrowserModule,

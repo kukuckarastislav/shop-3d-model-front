@@ -96,8 +96,9 @@
           <mat-icon (click)="redirectToCreatePage()" class="s3m-nav-icon-button">cloud_upload</mat-icon>
         
           <ng-template #popContent>
-            <button ngbDropdownItem (click)="showMyPage()">My Page</button>
-            <button ngbDropdownItem (click)="showMyPurchases()">My Purchases</button>
+            <button ngbDropdownItem (click)="showMyPage()">Profile</button>
+            <button ngbDropdownItem (click)="showMySales()">Sales</button>
+            <button ngbDropdownItem (click)="showMyPurchases()">Purchases</button>
             <button ngbDropdownItem (click)="showSettings()">Settings</button>
             <button ngbDropdownItem (click)="logout()">Log out</button>
           </ng-template>
