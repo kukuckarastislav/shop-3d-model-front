@@ -207,7 +207,7 @@ export class ProductComponent implements OnInit {
     return this.userLoggedIn() &&
       this.loginService.getCurrentUser().uuid != this.product.creator.uuid &&
       !this.product.userInteraction.reviewed &&
-      !this.product.userInteraction.purchased;
+      this.product.userInteraction.purchased;
   }
 
   addReview() {

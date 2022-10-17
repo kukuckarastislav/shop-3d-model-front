@@ -102,5 +102,10 @@ export class ProductService {
     const headers = this.loginService.getHeaders();
     return this._http.get<any>(this.url+'api/product/my-sales', { headers: headers });
   }
+
+  GetDashboard() {
+    const headers = this.loginService.getHeaders();
+    return this._http.get<any>(this.url+'api/product/my-sales-dashboard', { headers: headers });
+  }
     
 }

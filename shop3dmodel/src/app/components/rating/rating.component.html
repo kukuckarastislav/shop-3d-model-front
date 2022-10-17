@@ -2,4 +2,4 @@
     <ng-template let-fill="fill" let-index="index">
       <span class="star" [class.filled]="fill === 100" >&#9733;</span>
     </ng-template>
-</ngb-rating> <span class="rate-text">{{currentRate}}</span>
+</ngb-rating> <span class="rate-text">{{currentRate.toFixed(2)}}</span>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Dashboard } from 'src/app/models/Dashboard';
 import { Purchase } from 'src/app/models/Purchase';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -15,6 +16,7 @@ export class SalesComponent implements OnInit {
   constructor(private loginService: LoginService, private productService: ProductService) { }
 
   purchases: Purchase[] = [];
+  dashboard: Dashboard = new Dashboard();
 
   searchProductName: string = '';
   searchUserName: string = '';
@@ -25,6 +27,10 @@ export class SalesComponent implements OnInit {
 
     this.productService.GetMySales().subscribe((data) => {
       this.purchases = data;
+    });
+    
+    this.productService.GetDashboard().subscribe((data) => {
+      this.dashboard = data;
     } );
   }
 
