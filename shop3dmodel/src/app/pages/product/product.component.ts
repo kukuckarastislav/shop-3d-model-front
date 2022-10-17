@@ -254,12 +254,12 @@ export class ProductComponent implements OnInit {
 
   download() {
     this.productService.DownloadProduct(this.product.uuid).subscribe((data: any) => {
-      saveAs(data, this.product.name);
+      saveAs(data.data, this.product.name+'.zip');
       /*
-      const blob = new Blob([data], {
+      const blob = new Blob([data.data], {
         type: 'application/octet-stream'
       });
-      saveAs(blob, this.product.name);
+      //saveAs(blob, this.product.name);
       const url = window.URL.createObjectURL(blob);
       window.open(url);
       */

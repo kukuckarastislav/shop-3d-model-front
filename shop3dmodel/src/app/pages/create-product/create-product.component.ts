@@ -34,8 +34,13 @@ export class CreateProductComponent implements OnInit {
   }
   //// 
 
+  fileProduct: File | null = null;
+  fileProductBase64: string | any = '';
   handleProductFileInput(files: FileList) { 
-    
+    this.fileProduct = files.item(0);
+    this.getBase64(this.fileProduct).then((data) => {
+      this.fileProductBase64 = data;
+    });
   }
 
   fileToUpload: File | null = null;
@@ -104,7 +109,9 @@ export class CreateProductComponent implements OnInit {
     
   createProduct() {
     this.product.images = this.imagesForFront;
+    this.product.fileBase64 = this.fileProductBase64;
     this.product.images.forEach(element => { element.imgData = element.url; });
+    console.log("product", this.product);
     this.productService.CreateProduct(this.product).subscribe((data) => {
       console.log("data", data);
       if (data != null && data != undefined) { 

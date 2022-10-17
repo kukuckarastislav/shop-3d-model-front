@@ -3,6 +3,7 @@ import { ProductDetails } from "./ProductDetails";
 
 export class CreateNewProduct {
     constructor(
+        public fileBase64: string = '',
         public name: string = '',
         public price: number = 49,
         public description: string = '',
